@@ -13,4 +13,4 @@ Jupyter in your browser.
 
 Available notebooks include
 
-* [**Melody RNN**](/demos/notebooks/Generating_Melodies_With_Melody_RN.ipynb)
+* **Melody RNN**: [Generating_Melodies_With_Melody_RNN.ipynb](/demos/notebooks/Generating_Melodies_With_Melody_RNN.ipynb)
