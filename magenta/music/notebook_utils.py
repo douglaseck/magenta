@@ -14,6 +14,8 @@
 """Python functions which run only within a Jupyter notebook."""
 
 import collections
+import os
+import urllib2
 
 # internal imports
 
@@ -115,3 +117,25 @@ def plot_sequence(sequence,
     bokeh.plotting.show(fig)
     return None
   return fig
+
+
+def download_bundle(bundle_name, target_dir, force_reload=False):
+  """Downloads a Magenta bundle to target directory.
+
+  Args:
+     bundle_name: A string providing the Magenta bundle name to download.
+     target_dir: A string providing a local directory in which to write the bundle.
+     force_reload: A boolean indicating whether or not to reload the bundle if already present.
+
+  Returns:
+     None
+
+  """
+  bundle_target = os.path.join(target_dir, bundle_name)
+  if not os.path.exists(bundle_target) or force_reload:
+    response = urllib2.urlopen('http://download.magenta.tensorflow.org/models/%s' % bundle_name)
+    data = response.read()
+    local_file = open(bundle_target, 'wb')
+    local_file.write(data)
+    local_file.close()
+    

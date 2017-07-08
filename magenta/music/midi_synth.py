@@ -15,6 +15,7 @@
 
 # internal imports
 import numpy as np
+import pretty_midi as pm
 
 from magenta.music import midi_io
 
@@ -52,5 +53,9 @@ def fluidsynth(sequence, sample_rate, sf2_path=None):
   Returns:
     A 1-D numpy float array containing the synthesized waveform.
   """
+
+  #if not sf2_path:
+  #  sf2_path = os.path.join(os.path.dirname(pm.__file__), pm.DEFAULT_SF2)
+
   midi = midi_io.sequence_proto_to_pretty_midi(sequence)
   return midi.fluidsynth(fs=sample_rate, sf2_path=sf2_path)
